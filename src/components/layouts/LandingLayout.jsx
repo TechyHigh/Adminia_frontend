@@ -7,7 +7,7 @@ export default function LandingLayout() {
             <header className="sticky top-0 z-50 w-full h-[72px] bg-card border-b border-border shadow-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
                     <div className="flex items-center gap-8">
-                        <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-primary"><img src="https://res.cloudinary.com/dz0xmodpo/image/upload/v1778386515/Adminia_Logo_flo7pb.png" alt="Adminia Logo" className="w-12 h-12" />Adminia</Link>    
+                        <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-primary"><img src="https://res.cloudinary.com/dz0xmodpo/image/upload/v1778387204/Adminia_Logo_vhmg3p.png" alt="Adminia Logo" className="w-12 h-12" />Adminia</Link>    
                         {/* <nav className="hidden md:flex items-center gap-6">
                             <Link to="/" className="text-text hover:text-primary font-medium transition-colors">Home</Link>
                             <a href="#features" className="text-text hover:text-primary font-medium transition-colors">Features</a>
