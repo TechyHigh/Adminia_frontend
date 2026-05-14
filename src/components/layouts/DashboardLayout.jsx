@@ -5,23 +5,23 @@ import { useState } from 'react';
 export default function DashboardLayout({ navigation, title }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const location  = useLocation();
-  const navigate  = useNavigate();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const isStudent    = title === 'Student Portal';
+  const isStudent = title === 'Student Portal';
   const isSuperAdmin = title === 'Super Admin';
 
   const gradients = {
     'Student Portal': 'from-blue-600 to-indigo-600',
-    'Admin Panel':    'from-indigo-600 to-purple-600',
-    'Super Admin':    'from-purple-600 to-pink-600',
+    'Admin Panel': 'from-indigo-600 to-purple-600',
+    'Super Admin': 'from-purple-600 to-pink-600',
   };
   const gradient = gradients[title] || gradients['Admin Panel'];
 
   const userMeta = {
-    'Student Portal': { name: 'Student Name',  email: 'student@example.com',       initials: 'S',  Icon: GraduationCap },
-    'Admin Panel':    { name: 'College Admin',  email: 'admin@college.edu',          initials: 'A',  Icon: ShieldCheck },
-    'Super Admin':    { name: 'Super Admin',    email: 'superadmin@adminia.in',      initials: 'SA', Icon: ShieldCheck },
+    'Student Portal': { name: 'Student Name', email: 'student@example.com', initials: 'S', Icon: GraduationCap },
+    'Admin Panel': { name: 'College Admin', email: 'admin@college.edu', initials: 'A', Icon: ShieldCheck },
+    'Super Admin': { name: 'Super Admin', email: 'superadmin@adminia.in', initials: 'SA', Icon: ShieldCheck },
   };
   const user = userMeta[title] || userMeta['Admin Panel'];
 
@@ -47,7 +47,7 @@ export default function DashboardLayout({ navigation, title }) {
 
         {/* Logo */}
         <div className="h-[68px] flex items-center px-5 border-b border-border justify-between shrink-0">
-          <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-primary"><img src="https://res.cloudinary.com/dz0xmodpo/image/upload/v1778387204/Adminia_Logo_vhmg3p.png" alt="Adminia Logo" className="w-12 h-12" />Adminia</Link>    
+          <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-primary"><img src="https://res.cloudinary.com/dz0xmodpo/image/upload/v1778386515/Adminia_Logo_flo7pb.png" alt="Adminia Logo" className="w-12 h-12" />Adminia</Link>
           <button onClick={() => setSidebarOpen(false)}
             className="lg:hidden p-1.5 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
             <X className="w-5 h-5" />
@@ -64,7 +64,7 @@ export default function DashboardLayout({ navigation, title }) {
           {navigation.map((item) => {
             if (item.name === 'Logout') return null;
             const active = isActive(item);
-            const Icon   = item.icon;
+            const Icon = item.icon;
             return (
               <Link key={item.name} to={item.href}
                 onClick={() => setSidebarOpen(false)}

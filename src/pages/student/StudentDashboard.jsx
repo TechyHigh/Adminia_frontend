@@ -1,4 +1,4 @@
-import { Activity, FileText, Hash, Award, CheckCircle, Clock, AlertCircle, ArrowRight } from 'lucide-react';
+import { Activity, FileText, Hash, Award, CheckCircle, Clock, AlertCircle, ArrowRight, MessageSquare, ShieldCheck, BookOpen, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const APP_STATUS = 'Under Review'; // Draft | Submitted | Under Review | Need Correction | Approved | Confirmed
@@ -21,6 +21,20 @@ const STEPS = [
 ];
 const PROGRESS = { Draft: 1, Submitted: 2, 'Under Review': 3, 'Need Correction': 2, Approved: 4, Confirmed: 5 };
 
+const UPDATES = [
+  { id: 1, title: 'Your application is under review.', date: '06 May 2026, 10:30 AM', icon: MessageSquare, color: 'text-primary', bg: 'bg-primary/10' },
+  { id: 2, title: 'Document verification in progress.', date: '05 May 2026, 04:15 PM', icon: ShieldCheck, color: 'text-warning', bg: 'bg-warning/10' },
+  { id: 3, title: 'Welcome! Your application has been submitted successfully.', date: '01 May 2026, 11:20 AM', icon: CheckCircle, color: 'text-success', bg: 'bg-success/10' }
+];
+
+const GUIDELINES = [
+  'Ensure all personal details match your official academic documents.',
+  'Upload clear, scanned copies of your original documents. Max size 2MB per file.',
+  'Phase-I must be approved before you can upload Phase-II documents.',
+  'Keep your Application ID handy for any communication with the admin office.',
+  'Contact support immediately if you notice any discrepancies in your application.'
+];
+
 export function StudentDashboard() {
   const banner    = BANNER[APP_STATUS] || BANNER['Under Review'];
   const BIcon     = banner.icon;
@@ -31,7 +45,7 @@ export function StudentDashboard() {
     { name: 'Application Status', value: APP_STATUS,       icon: Activity,  color: 'text-primary',    bg: 'bg-primary/10' },
     { name: 'Docs Uploaded',      value: '3 / 5',          icon: FileText,  color: 'text-secondary',  bg: 'bg-secondary/10' },
     { name: 'Application ID',     value: 'CG27-001',       icon: Hash,      color: 'text-purple-600', bg: 'bg-purple-100' },
-    { name: 'Admission Status',   value: 'Pending',        icon: Award,     color: 'text-warning',    bg: 'bg-warning/10' },
+    { name: 'Next Deadline',   value: '2026-05-31',        icon: Clock,     color: 'text-warning',    bg: 'bg-warning/10' },
   ];
 
   return (
@@ -99,7 +113,52 @@ export function StudentDashboard() {
           </div>
         </div>
       </div>
+
+      {/* Bottom Grid: Updates & Guidelines */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fade-in-up delay-500">
+        
+        {/* Latest Updates Card */}
+        <div className="bg-card border border-border rounded-xl p-6 shadow-sm flex flex-col">
+          <h2 className="text-base font-bold text-text mb-4">Latest Updates</h2>
+          <div className="flex-1 space-y-0">
+            {UPDATES.map((update, idx) => (
+              <div key={update.id} className={`py-4 flex gap-4 ${idx !== UPDATES.length - 1 ? 'border-b border-border' : ''}`}>
+                <div className={`p-2.5 rounded-xl ${update.bg} flex-shrink-0 h-fit`}>
+                  <update.icon className={`w-5 h-5 ${update.color}`} />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-text">{update.title}</p>
+                  <p className="text-xs text-gray-500 mt-1">Updated on {update.date}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <Link to="#" className="mt-4 pt-4 border-t border-border inline-flex items-center gap-1 text-primary text-sm font-semibold hover:text-primary/80 transition-colors">
+            View All Updates <ArrowRight className="w-4 h-4 ml-1" />
+          </Link>
+        </div>
+
+        {/* Guidelines Card */}
+        <div className="bg-card border border-border rounded-xl p-6 shadow-sm flex flex-col">
+          <div className="flex items-center gap-2 mb-4">
+            <BookOpen className="w-5 h-5 text-secondary" />
+            <h2 className="text-base font-bold text-text">Application Guidelines</h2>
+          </div>
+          <div className="bg-secondary/5 rounded-xl p-5 border border-secondary/10 flex-1">
+            <ul className="space-y-4">
+              {GUIDELINES.map((guide, idx) => (
+                <li key={idx} className="flex gap-3 text-sm text-gray-600 leading-relaxed">
+                  <div className="mt-0.5 flex-shrink-0">
+                    <Info className="w-4 h-4 text-secondary/70" />
+                  </div>
+                  <span>{guide}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+      </div>
     </div>
   );
 }
-
