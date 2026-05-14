@@ -47,7 +47,7 @@ export default function DashboardLayout({ navigation, title }) {
 
         {/* Logo */}
         <div className="h-[68px] flex items-center px-5 border-b border-border justify-between shrink-0">
-          <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-primary"><img src="https://res.cloudinary.com/dz0xmodpo/image/upload/v1778386515/Adminia_Logo_flo7pb.png" alt="Adminia Logo" className="w-12 h-12" />Adminia</Link>
+          <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-primary"><img src="http://res.cloudinary.com/dz0xmodpo/image/upload/v1778387204/Adminia_Logo_vhmg3p.png" alt="Adminia Logo" className="w-12 h-12" />Adminia</Link>
           <button onClick={() => setSidebarOpen(false)}
             className="lg:hidden p-1.5 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
             <X className="w-5 h-5" />
