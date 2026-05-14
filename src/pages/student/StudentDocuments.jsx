@@ -13,7 +13,7 @@ const STEPS = [
   { id: 5, name: 'Review' },
 ];
 
-const inputCls  = 'w-full px-4 py-2.5 rounded-xl border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-sm bg-white';
+const inputCls  = 'w-full px-4 py-2.5 rounded-xl border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-sm bg-card text-text placeholder:text-text/45';
 const selectCls = inputCls + ' cursor-pointer';
 
 function Field({ label, required, children }) {
@@ -29,31 +29,31 @@ function Field({ label, required, children }) {
 
 function FileUploadCard({ label, hint, required, uploaded, onUpload }) {
   return (
-    <div className={`border rounded-xl p-4 transition-all ${uploaded ? 'border-success/40 bg-success/5' : 'border-border bg-white'}`}>
+    <div className={`border rounded-xl p-4 transition-all ${uploaded ? 'border-success/40 bg-success/5' : 'border-border bg-card'}`}>
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-2.5">
-          <div className={`p-2 rounded-lg ${uploaded ? 'bg-success/10' : 'bg-gray-100'}`}>
-            <File className={`w-4 h-4 ${uploaded ? 'text-success' : 'text-gray-400'}`} />
+          <div className={`p-2 rounded-lg ${uploaded ? 'bg-success/10' : 'bg-muted'}`}>
+            <File className={`w-4 h-4 ${uploaded ? 'text-success' : 'text-text/45'}`} />
           </div>
           <div>
             <p className="text-sm font-semibold text-text">{label}</p>
             {required && <span className="text-xs text-danger">Required</span>}
-            {!required && <span className="text-xs text-gray-400">Optional</span>}
+            {!required && <span className="text-xs text-text/45">Optional</span>}
           </div>
         </div>
         {uploaded && <CheckCircle className="w-5 h-5 text-success flex-shrink-0" />}
       </div>
-      <p className="text-xs text-gray-400 mb-3">{hint}</p>
+      <p className="text-xs text-text/50 mb-3">{hint}</p>
       {!uploaded ? (
         <button type="button" onClick={onUpload}
-          className="w-full py-2.5 border-2 border-dashed border-gray-200 rounded-xl hover:border-primary/40 hover:bg-primary/5 transition-all text-sm text-gray-500 font-medium flex items-center justify-center gap-2">
+          className="w-full py-2.5 border-2 border-dashed border-border rounded-xl hover:border-primary/40 hover:bg-primary/5 transition-all text-sm text-text/55 font-medium flex items-center justify-center gap-2">
           <Upload className="w-4 h-4" /> Click to Upload
         </button>
       ) : (
         <div className="flex items-center justify-between">
           <span className="text-xs text-success font-semibold">Uploaded ✓</span>
           <button type="button" onClick={onUpload}
-            className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600 transition-colors">
+            className="flex items-center gap-1 text-xs text-text/45 hover:text-text transition-colors">
             <RefreshCcw className="w-3 h-3" /> Replace
           </button>
         </div>
@@ -116,11 +116,11 @@ export function StudentDocuments() {
   if (!PHASE1_APPROVED) {
     return (
       <div className="max-w-xl mx-auto mt-20 text-center animate-fade-in">
-        <div className="w-20 h-20 rounded-2xl bg-gray-100 flex items-center justify-center mx-auto mb-5">
-          <Lock className="w-9 h-9 text-gray-400" />
+        <div className="w-20 h-20 rounded-2xl bg-muted flex items-center justify-center mx-auto mb-5">
+          <Lock className="w-9 h-9 text-text/45" />
         </div>
         <h2 className="text-xl font-bold text-text mb-2">Phase-II Locked</h2>
-        <p className="text-gray-500 text-sm max-w-xs mx-auto">Phase-II documentation is only available after your Phase-I application is approved by the college admin.</p>
+        <p className="text-text/60 text-sm max-w-xs mx-auto">Phase-II documentation is only available after your Phase-I application is approved by the college admin.</p>
       </div>
     );
   }
@@ -133,7 +133,7 @@ export function StudentDocuments() {
           <CheckCircle className="w-10 h-10 text-success" />
         </div>
         <h2 className="text-2xl font-bold text-text mb-2">Admission Confirmed! 🎉</h2>
-        <p className="text-gray-500 text-sm">Welcome to <span className="font-semibold text-text">133/George College</span>. Your Phase-II documentation is complete.</p>
+        <p className="text-text/60 text-sm">Welcome to <span className="font-semibold text-text">133/George College</span>. Your Phase-II documentation is complete.</p>
         <div className="mt-6 p-5 bg-success/5 border border-success/20 rounded-2xl text-sm text-success font-medium">
           Check your registered email for the admission letter and further instructions.
         </div>
@@ -148,7 +148,7 @@ export function StudentDocuments() {
           <Check className="w-3.5 h-3.5" /> Phase-I Approved — Proceed to Phase-II
         </div>
         <h1 className="text-2xl font-bold text-text">Phase-II Documentation</h1>
-        <p className="text-gray-500 mt-1 text-sm">Submit your final documents and academic details to confirm your admission.</p>
+        <p className="text-text/60 mt-1 text-sm">Submit your final documents and academic details to confirm your admission.</p>
       </div>
 
       {/* Stepper */}
@@ -160,15 +160,15 @@ export function StudentDocuments() {
             return (
               <div key={s.id} className="flex items-center">
                 <div className="flex items-center gap-2">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${done ? 'bg-success text-white' : current ? 'bg-primary text-white' : 'bg-gray-100 text-gray-400'}`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all border border-transparent ${done ? 'bg-success text-white border-success/30' : current ? 'bg-primary text-white border-primary/30' : 'bg-muted text-text/55 border-border/50'}`}>
                     {done ? <Check className="w-4 h-4" /> : s.id}
                   </div>
-                  <span className={`text-sm font-semibold whitespace-nowrap ${current ? 'text-primary' : done ? 'text-text' : 'text-gray-400'}`}>
+                  <span className={`text-sm font-semibold whitespace-nowrap ${current ? 'text-primary' : done ? 'text-text' : 'text-text/55'}`}>
                     {s.name}
                   </span>
                 </div>
                 {i < STEPS.length - 1 && (
-                  <ChevronRight className={`w-5 h-5 mx-3 flex-shrink-0 ${done ? 'text-success' : 'text-gray-300'}`} />
+                  <ChevronRight className={`w-5 h-5 mx-3 flex-shrink-0 ${done ? 'text-success' : 'text-text/25'}`} />
                 )}
               </div>
             );
@@ -372,12 +372,12 @@ export function StudentDocuments() {
 
               <div className="bg-warning/5 border border-warning/20 rounded-xl p-4 flex gap-3 text-sm">
                 <AlertCircle className="w-5 h-5 text-warning flex-shrink-0 mt-0.5" />
-                <p className="text-gray-600">Please review all your information carefully. Clicking <strong>Confirm Admission</strong> will complete your Phase-II submission.</p>
+                <p className="text-text/70">Please review all your information carefully. Clicking <strong>Confirm Admission</strong> will complete your Phase-II submission.</p>
               </div>
 
               {/* Personal Info Review */}
               <div className="border border-border rounded-xl overflow-hidden">
-                <div className="bg-gray-50 px-5 py-3 border-b border-border">
+                <div className="bg-muted/60 px-5 py-3 border-b border-border">
                   <h3 className="font-semibold text-text text-sm">Personal Information</h3>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-4 p-5">
@@ -387,8 +387,8 @@ export function StudentDocuments() {
                     ['Blood Group', form.bloodGroup], ['Religion', form.religion],
                   ].map(([label, val]) => (
                     <div key={label}>
-                      <p className="text-xs text-gray-400 mb-0.5">{label}</p>
-                      <p className="text-sm font-semibold text-text">{val || <span className="text-gray-300 font-normal">—</span>}</p>
+                      <p className="text-xs text-text/50 mb-0.5">{label}</p>
+                      <p className="text-sm font-semibold text-text">{val || <span className="text-text/35 font-normal">—</span>}</p>
                     </div>
                   ))}
                 </div>
@@ -396,7 +396,7 @@ export function StudentDocuments() {
 
               {/* Educational Review */}
               <div className="border border-border rounded-xl overflow-hidden">
-                <div className="bg-gray-50 px-5 py-3 border-b border-border">
+                <div className="bg-muted/60 px-5 py-3 border-b border-border">
                   <h3 className="font-semibold text-text text-sm">Educational Details</h3>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-4 p-5">
@@ -406,8 +406,8 @@ export function StudentDocuments() {
                     ['12th Marks', form.marks12th], ['Division', form.classDivision], ['DGPA/CGPA', form.dgpaCgpa],
                   ].map(([label, val]) => (
                     <div key={label}>
-                      <p className="text-xs text-gray-400 mb-0.5">{label}</p>
-                      <p className="text-sm font-semibold text-text">{val || <span className="text-gray-300 font-normal">—</span>}</p>
+                      <p className="text-xs text-text/50 mb-0.5">{label}</p>
+                      <p className="text-sm font-semibold text-text">{val || <span className="text-text/35 font-normal">—</span>}</p>
                     </div>
                   ))}
                 </div>
@@ -415,7 +415,7 @@ export function StudentDocuments() {
 
               {/* Documents status */}
               <div className="border border-border rounded-xl overflow-hidden">
-                <div className="bg-gray-50 px-5 py-3 border-b border-border">
+                <div className="bg-muted/60 px-5 py-3 border-b border-border">
                   <h3 className="font-semibold text-text text-sm">Document Status</h3>
                 </div>
                 <div className="p-5 grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -448,7 +448,7 @@ export function StudentDocuments() {
           <div className="flex justify-between items-center pt-7 mt-6 border-t border-border gap-3">
             <button type="button" onClick={handleBack}
               disabled={step === 1}
-              className="px-6 py-2.5 rounded-xl border border-border text-sm font-semibold text-text hover:bg-gray-50 transition-all disabled:opacity-50 disabled:pointer-events-none flex items-center gap-2">
+              className="px-6 py-2.5 rounded-xl border border-border text-sm font-semibold text-text hover:bg-muted/50 transition-all disabled:opacity-50 disabled:pointer-events-none flex items-center gap-2">
               Back
             </button>
             

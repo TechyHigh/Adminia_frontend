@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Class-based dark mode (ThemeToggle sets `dark` on <html>). Tailwind v4 defaults `dark:` to prefers-color-scheme only. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @import "tailwindcss";
 
 @theme {
@@ -11,7 +15,18 @@
   --color-success: #16A34A;
   --color-warning: #F59E0B;
   --color-danger: #DC2626;
+  --color-muted: #F1F5F9;
   --font-sans: "Inter", sans-serif;
+}
+
+.dark {
+  --color-primary: #3B82F6;
+  --color-secondary: #22D3EE;
+  --color-background: #0F172A;
+  --color-card: #1E293B;
+  --color-border: #334155;
+  --color-text: #F8FAFC;
+  --color-muted: #334155;
 }
 
 body {

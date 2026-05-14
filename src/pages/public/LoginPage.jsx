@@ -27,22 +27,22 @@ export function LoginPage() {
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="w-full lg:w-1/2 flex items-center justify-center bg-gray-50 p-6">
-                <div className="w-full max-w-md bg-gradient-to-br from-cyan-200 to-blue-200 p-8 rounded-3xl shadow-xl">
+            <div className="w-full lg:w-1/2 flex items-center justify-center bg-background p-6">
+                <div className="w-full max-w-md bg-gradient-to-br from-cyan-200 to-blue-200 dark:from-slate-800 dark:to-slate-900 p-8 rounded-3xl shadow-xl">
                     
                     {/* TITLE */}
-                    <h2 className="text-2xl font-semibold text-center mb-6">
+                    <h2 className="text-2xl font-semibold text-center mb-6 text-text">
                         Log in as {role === "student" ? "Student" : "Admin"}
                     </h2>
 
                     {/* TOGGLE BUTTON */}
-                    <div className="flex bg-white rounded-xl p-1 mb-6 shadow-inner">
+                    <div className="flex bg-background rounded-xl p-1 mb-6 shadow-inner">
                         <button
                             onClick={() => setRole("student")}
                             className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-sm font-medium transition ${
                                 role === "student"
                                     ? "bg-blue-600 text-white shadow"
-                                    : "text-gray-500"
+                                    : "text-text/60"
                             }`}
                         >
                             <GraduationCap size={16} />
@@ -54,7 +54,7 @@ export function LoginPage() {
                             className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-sm font-medium transition ${
                                 role === "admin"
                                     ? "bg-blue-600 text-white shadow"
-                                    : "text-gray-500"
+                                    : "text-text/60"
                             }`}
                         >
                             <User size={16} />
@@ -67,31 +67,31 @@ export function LoginPage() {
                         
                         {/* EMAIL */}
                         <div>
-                            <label className="text-sm font-medium block mb-1">Email</label>
+                            <label className="text-sm font-medium block mb-1 text-text">Email</label>
                             <div className="relative">
                                 <input
                                     type="email"
                                     placeholder="Enter your email"
-                                    className="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none"
+                                    className="w-full px-4 py-2 rounded-xl border border-border bg-card text-text placeholder:text-text/45 focus:ring-2 focus:ring-primary/50 outline-none"
                                 />
-                                <User className="absolute right-3 top-2.5 text-gray-400" size={18} />
+                                <User className="absolute right-3 top-2.5 text-text/45" size={18} />
                             </div>
                         </div>
 
                         {/* PASSWORD */}
                         <div>
-                            <label className="text-sm font-medium block mb-1">Password</label>
+                            <label className="text-sm font-medium block mb-1 text-text">Password</label>
                             <div className="relative">
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     placeholder="Enter your password"
-                                    className="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none"
+                                    className="w-full px-4 py-2 rounded-xl border border-border bg-card text-text placeholder:text-text/45 focus:ring-2 focus:ring-primary/50 outline-none"
                                 />
 
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3 top-2.5 text-gray-500"
+                                    className="absolute right-3 top-2.5 text-text/50 hover:text-text"
                                 >
                                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                                 </button>
@@ -99,8 +99,8 @@ export function LoginPage() {
                         </div>
 
                         {/* REMEMBER */}
-                        <div className="flex items-center text-sm">
-                            <input type="checkbox" className="mr-2" />
+                        <div className="flex items-center text-sm text-text">
+                            <input type="checkbox" className="mr-2 rounded border-border bg-card text-primary accent-primary" />
                             Remember me
                         </div>
 

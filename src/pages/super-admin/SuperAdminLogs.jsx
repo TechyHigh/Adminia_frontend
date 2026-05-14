@@ -6,9 +6,11 @@ const TYPE_ICON = {
   system: Settings, auth: Shield,
 };
 const TYPE_COLOR = {
-  college: 'bg-purple-100 text-purple-600', student: 'bg-blue-100 text-blue-600',
-  application: 'bg-warning/10 text-warning', system: 'bg-gray-100 text-gray-600',
-  auth: 'bg-success/10 text-success',
+  college: 'bg-purple-500/15 text-purple-800 dark:text-purple-300 ring-1 ring-purple-500/20',
+  student: 'bg-primary/15 text-primary ring-1 ring-primary/25',
+  application: 'bg-warning/15 text-amber-800 dark:text-warning ring-1 ring-warning/30',
+  system: 'bg-muted/80 text-text/80 ring-1 ring-border/50',
+  auth: 'bg-success/15 text-green-800 dark:text-success ring-1 ring-success/25',
 };
 
 const LOGS = [
@@ -97,7 +99,7 @@ export function SuperAdminLogs() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold text-text">Activity Logs</h1>
-          <p className="text-gray-500 text-sm mt-1">Full audit trail of all system events.</p>
+          <p className="text-text/60 text-sm mt-1">Full audit trail of all system events.</p>
         </div>
         {hasActiveFilters && (
           <button onClick={clearFilters} className="flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary rounded-xl text-xs font-bold hover:bg-primary/20 transition-colors">
@@ -110,14 +112,14 @@ export function SuperAdminLogs() {
         <div className="p-4 border-b border-border space-y-4">
           <div className="flex flex-col lg:flex-row gap-4 justify-between">
             <div className="relative max-w-md w-full">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-text/45" />
               <input value={search} onChange={e => setSearch(e.target.value)}
-                placeholder="Search action or details..." className="pl-9 pr-4 py-2 border border-border rounded-xl text-sm outline-none focus:border-primary w-full" />
+                placeholder="Search action or details..." className="pl-9 pr-4 py-2 border border-border rounded-xl text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 w-full bg-card text-text placeholder:text-text/45" />
             </div>
 
             <div className="flex flex-wrap items-center gap-2">
-              <button onClick={() => setShowFilters(!showFilters)}
-                className={`flex items-center gap-2 px-4 py-2 border rounded-xl text-sm font-medium transition-colors ${showFilters ? 'bg-primary text-white border-primary' : 'hover:bg-gray-50'}`}>
+              <button type="button" onClick={() => setShowFilters(!showFilters)}
+                className={`flex items-center gap-2 px-4 py-2 border border-border rounded-xl text-sm font-medium transition-colors ${showFilters ? 'bg-primary text-white border-primary' : 'text-text hover:bg-muted/50'}`}>
                 <Filter className="w-4 h-4" />
                 {showFilters ? 'Hide Filters' : 'Date & Time Filters'}
               </button>
@@ -126,8 +128,8 @@ export function SuperAdminLogs() {
 
               <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
                 {ALL_TYPES.map(t => (
-                  <button key={t} onClick={() => setTypeFilter(t)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap capitalize transition-colors ${typeFilter === t ? 'bg-primary text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
+                  <button type="button" key={t} onClick={() => setTypeFilter(t)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap capitalize transition-colors border border-transparent ${typeFilter === t ? 'bg-primary text-white border-primary/30' : 'bg-muted/70 text-text/80 border-border/60 hover:bg-border/40'}`}>
                     {t}
                   </button>
                 ))}
@@ -136,34 +138,34 @@ export function SuperAdminLogs() {
           </div>
 
           {showFilters && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 bg-gray-50/50 rounded-xl border border-border animate-scale-in">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 bg-muted/40 rounded-xl border border-border animate-scale-in">
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-gray-400 uppercase flex items-center gap-1">
-                  <Calendar className="w-3 h-3" /> Start Date
+                <label className="text-[10px] font-bold text-text/60 uppercase flex items-center gap-1">
+                  <Calendar className="w-3 h-3 shrink-0" /> Start Date
                 </label>
                 <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)}
-                  className="w-full px-3 py-1.5 border border-border rounded-lg text-sm outline-none focus:border-primary" />
+                  className="w-full px-3 py-1.5 border border-border rounded-lg text-sm outline-none focus:border-primary bg-card text-text dark:[color-scheme:dark]" />
               </div>
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-gray-400 uppercase flex items-center gap-1">
-                  <Calendar className="w-3 h-3" /> End Date
+                <label className="text-[10px] font-bold text-text/60 uppercase flex items-center gap-1">
+                  <Calendar className="w-3 h-3 shrink-0" /> End Date
                 </label>
                 <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)}
-                  className="w-full px-3 py-1.5 border border-border rounded-lg text-sm outline-none focus:border-primary" />
+                  className="w-full px-3 py-1.5 border border-border rounded-lg text-sm outline-none focus:border-primary bg-card text-text dark:[color-scheme:dark]" />
               </div>
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-gray-400 uppercase flex items-center gap-1">
-                  <Clock className="w-3 h-3" /> Start Time
+                <label className="text-[10px] font-bold text-text/60 uppercase flex items-center gap-1">
+                  <Clock className="w-3 h-3 shrink-0" /> Start Time
                 </label>
                 <input type="time" value={startTime} onChange={e => setStartTime(e.target.value)}
-                  className="w-full px-3 py-1.5 border border-border rounded-lg text-sm outline-none focus:border-primary" />
+                  className="w-full px-3 py-1.5 border border-border rounded-lg text-sm outline-none focus:border-primary bg-card text-text dark:[color-scheme:dark]" />
               </div>
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-gray-400 uppercase flex items-center gap-1">
-                  <Clock className="w-3 h-3" /> End Time
+                <label className="text-[10px] font-bold text-text/60 uppercase flex items-center gap-1">
+                  <Clock className="w-3 h-3 shrink-0" /> End Time
                 </label>
                 <input type="time" value={endTime} onChange={e => setEndTime(e.target.value)}
-                  className="w-full px-3 py-1.5 border border-border rounded-lg text-sm outline-none focus:border-primary" />
+                  className="w-full px-3 py-1.5 border border-border rounded-lg text-sm outline-none focus:border-primary bg-card text-text dark:[color-scheme:dark]" />
               </div>
             </div>
           )}
@@ -171,34 +173,34 @@ export function SuperAdminLogs() {
 
         <div className="divide-y divide-border overflow-hidden rounded-b-2xl">
           {filtered.length === 0 ? (
-            <div className="py-20 text-center flex flex-col items-center justify-center bg-gray-50/30">
-              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                <Search className="w-6 h-6 text-gray-300" />
+            <div className="py-20 text-center flex flex-col items-center justify-center bg-muted/20">
+              <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4 border border-border/60">
+                <Search className="w-6 h-6 text-text/40" />
               </div>
-              <p className="text-gray-400 font-medium">No activity logs found</p>
-              <p className="text-xs text-gray-400 mt-1">Try adjusting your filters or search terms</p>
+              <p className="text-text/70 font-medium">No activity logs found</p>
+              <p className="text-xs text-text/50 mt-1">Try adjusting your filters or search terms</p>
             </div>
           ) : filtered.map((log, i) => {
             const Icon = TYPE_ICON[log.type] || Activity;
-            const colorCls = TYPE_COLOR[log.type] || 'bg-gray-100 text-gray-500';
+            const colorCls = TYPE_COLOR[log.type] || 'bg-muted/80 text-text/70 ring-1 ring-border/50';
             return (
-              <div key={log.id} className="flex items-start gap-4 px-5 py-4 hover:bg-gray-50/80 transition-colors animate-fade-in group" style={{ animationDelay: `${i * 30}ms` }}>
+              <div key={log.id} className="flex items-start gap-4 px-5 py-4 hover:bg-muted/25 transition-colors animate-fade-in group" style={{ animationDelay: `${i * 30}ms` }}>
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm transition-transform group-hover:scale-105 ${colorCls}`}>
-                  <Icon className="w-4.5 h-4.5" />
+                  <Icon className="w-4 h-4" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <p className="font-bold text-text text-sm group-hover:text-primary transition-colors">{log.action}</p>
-                      <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{log.detail}</p>
+                      <p className="text-xs text-text/70 mt-0.5 leading-relaxed">{log.detail}</p>
                     </div>
                     <div className="text-right flex-shrink-0">
-                      <span className="text-[11px] font-medium text-gray-400 block">{formatTimestamp(log.timestamp)}</span>
+                      <span className="text-[11px] font-medium text-text/55 block">{formatTimestamp(log.timestamp)}</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 mt-2">
-                    <span className="text-[10px] text-gray-400 uppercase tracking-wider">Initiated by</span>
-                    <span className="text-[11px] font-bold text-gray-600 bg-gray-100 px-2 py-0.5 rounded-md">{log.user}</span>
+                    <span className="text-[10px] text-text/50 uppercase tracking-wider">Initiated by</span>
+                    <span className="text-[11px] font-semibold text-text bg-muted/90 border border-border px-2 py-0.5 rounded-md">{log.user}</span>
                   </div>
                 </div>
               </div>

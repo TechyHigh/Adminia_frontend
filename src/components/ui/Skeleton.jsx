@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Skeleton = ({ className = '', variant = 'rect' }) => {
-  const baseClasses = "animate-pulse bg-muted/50 rounded-md";
+  const baseClasses = "animate-pulse bg-border/40 rounded-md";
   
   const variantClasses = {
     rect: "",
@@ -25,7 +25,7 @@ export const TableSkeleton = ({ rows = 5, cols = 4 }) => {
         ))}
       </div>
       <div className="border border-border rounded-xl overflow-hidden bg-card/50">
-        <div className="p-4 border-b border-border bg-muted/20">
+        <div className="p-4 border-b border-border bg-border/20">
           <div className="flex gap-4">
             {[...Array(cols)].map((_, i) => (
               <Skeleton key={i} className="h-4 flex-1" />

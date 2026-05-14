@@ -9,7 +9,7 @@ const STEPS = [
   { id: 4, name: 'Review & Submit' },
 ];
 
-const inputCls  = 'w-full px-4 py-2.5 rounded-xl border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-sm bg-white';
+const inputCls  = 'w-full px-4 py-2.5 rounded-xl border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-sm bg-card text-text placeholder:text-text/45';
 const selectCls = inputCls + ' cursor-pointer';
 
 function Field({ label, required, children }) {
@@ -89,15 +89,15 @@ export function ApplicationForm() {
             return (
               <div key={s.id} className="flex items-center">
                 <div className="flex items-center gap-2">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${done ? 'bg-success text-white' : current ? 'bg-primary text-white' : 'bg-gray-100 text-gray-400'}`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all border border-transparent ${done ? 'bg-success text-white border-success/30' : current ? 'bg-primary text-white border-primary/30' : 'bg-muted text-text/55 border-border/50'}`}>
                     {done ? <Check className="w-4 h-4" /> : s.id}
                   </div>
-                  <span className={`text-sm font-semibold whitespace-nowrap ${current ? 'text-primary' : done ? 'text-text' : 'text-gray-400'}`}>
+                  <span className={`text-sm font-semibold whitespace-nowrap ${current ? 'text-primary' : done ? 'text-text' : 'text-text/55'}`}>
                     {s.name}
                   </span>
                 </div>
                 {i < STEPS.length - 1 && (
-                  <ChevronRight className={`w-5 h-5 mx-3 flex-shrink-0 ${done ? 'text-success' : 'text-gray-300'}`} />
+                  <ChevronRight className={`w-5 h-5 mx-3 flex-shrink-0 ${done ? 'text-success' : 'text-text/25'}`} />
                 )}
               </div>
             );

@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 const APP_STATUS = 'Under Review'; // Draft | Submitted | Under Review | Need Correction | Approved | Confirmed
 
 const BANNER = {
-  Draft:            { color: 'bg-gray-50 border-gray-200',     icon: FileText,    title: 'Incomplete Application', desc: 'You have a saved draft. Complete your Phase-I application.', action: 'Complete Phase-I', href: '/student/application' },
+  Draft:            { color: 'bg-muted/40 border-border',     icon: FileText,    title: 'Incomplete Application', desc: 'You have a saved draft. Complete your Phase-I application.', action: 'Complete Phase-I', href: '/student/application' },
   Submitted:        { color: 'bg-primary/5 border-primary/20', icon: Clock,       title: 'Application Submitted', desc: 'Your application is queued for review by the admin.', action: 'View Progress', href: '/student' },
   'Under Review':   { color: 'bg-primary/5 border-primary/20', icon: Clock,       title: 'Under Review', desc: 'Your Phase-I application is being reviewed. You will be notified of the decision.', action: null },
   'Need Correction':{ color: 'bg-warning/5 border-warning/30', icon: AlertCircle, title: 'Correction Required', desc: 'Admin has requested changes to your Phase-I application.', action: 'Edit Application', href: '/student/application' },
   Approved:         { color: 'bg-success/5 border-success/30', icon: CheckCircle, title: 'Phase-I Approved!', desc: 'Congratulations! Proceed to Phase-II documentation to confirm your admission.', action: 'Start Phase-II', href: '/student/documents' },
-  Confirmed:        { color: 'bg-indigo-50 border-indigo-200', icon: CheckCircle, title: 'Admission Confirmed!', desc: 'Your admission to George College is complete. Welcome!', action: null },
+  Confirmed:        { color: 'bg-primary/10 border-primary/25', icon: CheckCircle, title: 'Admission Confirmed!', desc: 'Your admission to George College is complete. Welcome!', action: null },
 };
 
 const STEPS = [
@@ -44,7 +44,7 @@ export function StudentDashboard() {
   const stats = [
     { name: 'Application Status', value: APP_STATUS,       icon: Activity,  color: 'text-primary',    bg: 'bg-primary/10' },
     { name: 'Docs Uploaded',      value: '3 / 5',          icon: FileText,  color: 'text-secondary',  bg: 'bg-secondary/10' },
-    { name: 'Application ID',     value: 'CG27-001',       icon: Hash,      color: 'text-purple-600', bg: 'bg-purple-100' },
+    { name: 'Application ID',     value: 'CG27-001',       icon: Hash,      color: 'text-purple-400', bg: 'bg-purple-500/15' },
     { name: 'Next Deadline',   value: '2026-05-31',        icon: Clock,     color: 'text-warning',    bg: 'bg-warning/10' },
   ];
 
@@ -52,18 +52,18 @@ export function StudentDashboard() {
     <div className="space-y-8 animate-fade-in">
       <div>
         <h1 className="text-2xl font-bold text-text">Welcome, Student Name 👋</h1>
-        <p className="text-gray-500 mt-1 text-sm">Track your admission progress below.</p>
+        <p className="text-text/60 mt-1 text-sm">Track your admission progress below.</p>
       </div>
 
       {/* Status Banner */}
       <div className={`rounded-xl border p-5 flex flex-col sm:flex-row sm:items-center gap-4 animate-fade-in-up delay-50 ${banner.color}`}>
         <div className="flex items-start gap-4 flex-1">
-          <div className="p-2.5 rounded-xl bg-white/80 shadow-sm flex-shrink-0">
+          <div className="p-2.5 rounded-xl bg-card/90 border border-border/60 shadow-sm flex-shrink-0">
             <BIcon className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h3 className="font-bold text-text text-sm">{banner.title}</h3>
-            <p className="text-xs text-gray-600 mt-0.5">{banner.desc}</p>
+            <p className="text-xs text-text/65 mt-0.5">{banner.desc}</p>
           </div>
         </div>
         {banner.action && (
@@ -81,7 +81,7 @@ export function StudentDashboard() {
               <s.icon className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-xs font-medium text-gray-500 mb-1">{s.name}</p>
+              <p className="text-xs font-medium text-text/55 mb-1">{s.name}</p>
               <p className="text-base font-bold text-text">{s.value}</p>
             </div>
           </div>
@@ -92,7 +92,7 @@ export function StudentDashboard() {
       <div className="bg-card border border-border rounded-xl p-6 lg:p-8 shadow-sm animate-fade-in-up delay-300">
         <h2 className="text-base font-bold text-text mb-6">Admission Progress</h2>
         <div className="relative">
-          <div className="absolute top-5 left-0 right-0 h-1 bg-gray-100 rounded-full" />
+          <div className="absolute top-5 left-0 right-0 h-1 bg-muted rounded-full" />
           <div className="absolute top-5 left-0 h-1 bg-primary rounded-full transition-all duration-700"
             style={{ width: `${pct}%` }} />
           <div className="relative flex justify-between">
@@ -101,10 +101,10 @@ export function StudentDashboard() {
               const cur  = s.id === curStep;
               return (
                 <div key={s.id} className="flex flex-col items-center">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center border-4 border-card z-10 relative transition-all ${done ? 'bg-success text-white' : cur ? 'bg-primary text-white' : 'bg-gray-100 text-gray-400'}`}>
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center border-4 border-card z-10 relative transition-all ${done ? 'bg-success text-white' : cur ? 'bg-primary text-white' : 'bg-muted text-text/50'}`}>
                     {done ? <CheckCircle className="w-5 h-5" /> : <span className="text-xs font-bold">{s.id}</span>}
                   </div>
-                  <span className={`mt-2 text-xs font-semibold whitespace-nowrap ${cur ? 'text-primary' : done ? 'text-text' : 'text-gray-400'}`}>
+                  <span className={`mt-2 text-xs font-semibold whitespace-nowrap ${cur ? 'text-primary' : done ? 'text-text' : 'text-text/55'}`}>
                     {s.name}
                   </span>
                 </div>
@@ -128,7 +128,7 @@ export function StudentDashboard() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-text">{update.title}</p>
-                  <p className="text-xs text-gray-500 mt-1">Updated on {update.date}</p>
+                  <p className="text-xs text-text/55 mt-1">Updated on {update.date}</p>
                 </div>
               </div>
             ))}

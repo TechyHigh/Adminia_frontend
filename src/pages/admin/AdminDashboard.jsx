@@ -14,22 +14,7 @@ import {
 } from 'lucide-react';
 import { useToast } from '../../components/ui/Toast';
 import { DashboardSkeleton } from '../../components/ui/Skeleton';
-
-/* ─── Status badge helper ─── */
-function StatusBadge({ status }) {
-  const map = {
-    Approved:         'bg-green-100 text-green-700',
-    Rejected:         'bg-red-100 text-red-700',
-    'Under Review':   'bg-blue-100 text-blue-700',
-    'Need Correction':'bg-yellow-100 text-yellow-700',
-    Pending:          'bg-gray-100 text-gray-600',
-  };
-  return (
-    <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${map[status] || map.Pending}`}>
-      {status}
-    </span>
-  );
-}
+import { StatusBadge } from '../../components/ui/StatusBadge';
 
 /* ─── Applications Table ─── */
 export function ApplicationsTable({ limit }) {
@@ -87,13 +72,13 @@ export function ApplicationsTable({ limit }) {
       {!limit && (
         <div className="p-4 border-b border-border flex flex-col sm:flex-row justify-between gap-3 relative">
           <div className="relative">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-text/45" />
             <input 
               type="text" 
               placeholder="Search applications..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-9 pr-4 py-2 border border-border rounded-xl outline-none focus:border-primary text-sm w-full sm:w-80 transition-colors" 
+              className="pl-9 pr-4 py-2 border border-border rounded-xl outline-none focus:border-primary text-sm w-full sm:w-80 transition-colors bg-card text-text placeholder:text-text/45" 
             />
           </div>
           <div className="flex gap-2">
@@ -107,7 +92,7 @@ export function ApplicationsTable({ limit }) {
             )}
             <button 
               onClick={() => setShowFilter(!showFilter)}
-              className={`flex items-center justify-center gap-2 px-4 py-2 border border-border rounded-xl text-sm font-medium transition-colors ${showFilter || statusFilter || courseFilter ? 'bg-primary/5 border-primary/20 text-primary' : 'hover:bg-gray-50'}`}
+              className={`flex items-center justify-center gap-2 px-4 py-2 border border-border rounded-xl text-sm font-medium transition-colors ${showFilter || statusFilter || courseFilter ? 'bg-primary/5 border-primary/20 text-primary' : 'hover:bg-muted/50'}`}
             >
               <Filter className="w-4 h-4" /> Filter
             </button>
@@ -115,24 +100,24 @@ export function ApplicationsTable({ limit }) {
 
           {/* Filter Dropdown */}
           {showFilter && (
-            <div className="absolute right-4 top-[calc(100%-4px)] w-72 bg-white border border-border rounded-2xl shadow-2xl z-30 animate-scale-in origin-top-right overflow-hidden sm:right-0">
-              <div className="p-3 border-b border-border bg-gray-50/50 flex items-center justify-between">
-                <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Advanced Filters</span>
-                <button onClick={() => setShowFilter(false)} className="p-1 hover:bg-gray-200 rounded-lg transition-colors">
-                  <XCircle className="w-4 h-4 text-gray-400" />
+            <div className="absolute right-4 top-[calc(100%-4px)] w-72 bg-card border border-border rounded-2xl shadow-2xl z-30 animate-scale-in origin-top-right overflow-hidden sm:right-0">
+              <div className="p-3 border-b border-border bg-muted/40 flex items-center justify-between">
+                <span className="text-xs font-bold text-text/55 uppercase tracking-wider">Advanced Filters</span>
+                <button onClick={() => setShowFilter(false)} className="p-1 hover:bg-border/50 rounded-lg transition-colors">
+                  <XCircle className="w-4 h-4 text-text/45" />
                 </button>
               </div>
               
               <div className="p-3 space-y-4">
                 {/* Status Filter */}
                 <div>
-                  <label className="block text-[10px] font-bold text-gray-400 uppercase mb-2">By Status</label>
+                  <label className="block text-[10px] font-bold text-text/45 uppercase mb-2">By Status</label>
                   <div className="grid grid-cols-2 gap-1.5">
                     {statuses.map(status => (
                       <button 
                         key={status} 
                         onClick={() => setStatusFilter(statusFilter === status ? '' : status)}
-                        className={`text-left px-3 py-1.5 rounded-lg text-xs transition-colors ${statusFilter === status ? 'bg-primary text-white font-bold' : 'bg-gray-50 text-gray-600 hover:bg-gray-100'}`}
+                        className={`text-left px-3 py-1.5 rounded-lg text-xs transition-colors ${statusFilter === status ? 'bg-primary text-white font-bold' : 'bg-muted/60 text-text/70 hover:bg-muted'}`}
                       >
                         {status}
                       </button>
@@ -142,11 +127,11 @@ export function ApplicationsTable({ limit }) {
 
                 {/* Course Filter */}
                 <div>
-                  <label className="block text-[10px] font-bold text-gray-400 uppercase mb-2">By Course</label>
+                  <label className="block text-[10px] font-bold text-text/45 uppercase mb-2">By Course</label>
                   <select 
                     value={courseFilter} 
                     onChange={(e) => setCourseFilter(e.target.value)}
-                    className="w-full text-xs border border-border rounded-lg p-2 outline-none focus:border-primary"
+                    className="w-full text-xs border border-border rounded-lg p-2 outline-none focus:border-primary bg-card text-text"
                   >
                     <option value="">All Courses</option>
                     {COURSES.map(c => (
@@ -161,7 +146,7 @@ export function ApplicationsTable({ limit }) {
       )}
       <div className="overflow-x-auto">
         <table className="w-full text-left text-sm whitespace-nowrap">
-          <thead className="bg-gray-50 text-gray-500 font-medium border-b border-border">
+          <thead className="bg-muted/50 text-text/60 font-medium border-b border-border">
             <tr>
               <th className="px-6 py-4">Application ID</th>
               <th className="px-6 py-4">Student Name</th>
@@ -173,13 +158,13 @@ export function ApplicationsTable({ limit }) {
           </thead>
           <tbody className="divide-y divide-border">
             {data.map((app, i) => (
-              <tr key={app.id} className="hover:bg-gray-50/70 transition-colors animate-fade-in"
+              <tr key={app.id} className="hover:bg-muted/30 transition-colors animate-fade-in"
                 style={{ animationDelay: `${i * 40}ms` }}>
                 <td className="px-6 py-4 font-mono text-xs font-semibold text-text">{app.id}</td>
                 <td className="px-6 py-4 font-medium text-text">{app.name}</td>
-                <td className="px-6 py-4 text-gray-500">{app.course}</td>
+                <td className="px-6 py-4 text-text/55">{app.course}</td>
                 <td className="px-6 py-4"><StatusBadge status={app.status} /></td>
-                <td className="px-6 py-4 text-gray-500">{app.date}</td>
+                <td className="px-6 py-4 text-text/55">{app.date}</td>
                 <td className="px-6 py-4 text-right">
                   <Link to={`/admin/applications/${app.id}`}
                     className="text-xs font-semibold text-primary border border-primary/25 px-3 py-1.5 rounded-lg hover:bg-primary/5 transition-colors">
@@ -190,7 +175,7 @@ export function ApplicationsTable({ limit }) {
             ))}
             {data.length === 0 && (
               <tr>
-                <td colSpan={6} className="px-6 py-12 text-center text-gray-400 text-sm">
+                <td colSpan={6} className="px-6 py-12 text-center text-text/45 text-sm">
                   No applications found matching your criteria.
                 </td>
               </tr>
@@ -249,10 +234,10 @@ export function AdminDashboard() {
             { label: 'Phase II — Documentation',   active: phase2, num: 2, toggle: () => toggle(2, phase2, setPhase2) },
           ].map(ph => (
             <div key={ph.num}
-              className={`flex-1 flex items-center justify-between p-4 rounded-xl border transition-all ${ph.active ? 'bg-success/5 border-success/30' : 'bg-gray-50 border-border'}`}>
+              className={`flex-1 flex items-center justify-between p-4 rounded-xl border transition-all ${ph.active ? 'bg-success/5 border-success/30' : 'bg-muted/40 border-border'}`}>
               <div>
                 <p className="font-semibold text-sm text-text">{ph.label}</p>
-                <p className={`text-xs font-medium mt-0.5 ${ph.active ? 'text-success' : 'text-gray-400'}`}>
+                <p className={`text-xs font-medium mt-0.5 ${ph.active ? 'text-success' : 'text-text/50'}`}>
                   {ph.active ? '● Active' : '○ Inactive'}
                 </p>
               </div>

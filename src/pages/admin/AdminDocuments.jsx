@@ -229,7 +229,7 @@ export function AdminDocuments() {
           <h1 className="text-2xl font-bold text-text">
             Document Verification
           </h1>
-          <p className="text-gray-500 text-sm">
+          <p className="text-text/60 text-sm">
             Review and verify applicant uploaded documents.
           </p>
         </div>
@@ -246,12 +246,12 @@ export function AdminDocuments() {
         <div className="p-4 flex justify-between relative border-b border-border">
           {/* SEARCH */}
           <div className="relative max-w-xs w-full">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-text/45" />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search students..."
-              className="pl-9 pr-4 py-2 border border-border rounded-xl w-full text-sm outline-none focus:border-primary transition-colors"
+              className="pl-9 pr-4 py-2 border border-border rounded-xl w-full text-sm outline-none focus:border-primary transition-colors bg-card text-text placeholder:text-text/45"
             />
           </div>
 
@@ -260,7 +260,7 @@ export function AdminDocuments() {
             {selectedCourses.length > 0 && (
               <button
                 onClick={() => setSelectedCourses([])}
-                className="flex items-center gap-1.5 px-3 py-2 bg-blue-50 text-blue-600 rounded-xl text-xs font-bold hover:bg-blue-100 transition-colors"
+                className="flex items-center gap-1.5 px-3 py-2 bg-primary/10 text-primary rounded-xl text-xs font-bold hover:bg-primary/15 transition-colors"
               >
                 <XCircle className="w-3.5 h-3.5" /> Clear ({selectedCourses.length})
               </button>
@@ -271,21 +271,21 @@ export function AdminDocuments() {
                 onClick={() => setShowFilter(!showFilter)}
                 className={`flex items-center gap-2 px-4 py-2 border rounded-xl text-sm font-medium transition-all ${
                   showFilter || selectedCourses.length > 0
-                    ? "bg-blue-50 border-blue-200 text-blue-600"
-                    : "hover:bg-gray-50"
+                    ? "bg-primary/10 border-primary/25 text-primary"
+                    : "border-border hover:bg-muted/50"
                 }`}
               >
                 <Filter className="w-4 h-4" /> Filter
               </button>
 
               {showFilter && (
-                <div className="absolute right-0 top-full mt-2 w-72 bg-white border border-border rounded-2xl shadow-2xl z-30 animate-scale-in origin-top-right overflow-hidden">
-                  <div className="p-3 border-b border-border bg-gray-50 flex justify-between items-center">
-                    <span className="text-xs font-bold text-gray-500 uppercase">
+                <div className="absolute right-0 top-full mt-2 w-72 bg-card border border-border rounded-2xl shadow-2xl z-30 animate-scale-in origin-top-right overflow-hidden">
+                  <div className="p-3 border-b border-border bg-muted/40 flex justify-between items-center">
+                    <span className="text-xs font-bold text-text/55 uppercase">
                       Filter by Course
                     </span>
-                    <button onClick={() => setShowFilter(false)} className="p-1 hover:bg-gray-200 rounded-lg transition-colors">
-                      <XCircle className="w-4 h-4 text-gray-400" />
+                    <button onClick={() => setShowFilter(false)} className="p-1 hover:bg-border/40 rounded-lg transition-colors">
+                      <XCircle className="w-4 h-4 text-text/45" />
                     </button>
                   </div>
 
@@ -294,8 +294,8 @@ export function AdminDocuments() {
                       onClick={() => setSelectedCourses([])}
                       className={`w-full text-left px-3 py-2 rounded-lg text-sm mb-1 transition-colors ${
                         selectedCourses.length === 0
-                          ? "bg-blue-600 text-white font-bold"
-                          : "hover:bg-gray-100 text-gray-600"
+                          ? "bg-primary text-white font-bold"
+                          : "hover:bg-muted/60 text-text/70"
                       }`}
                     >
                       All Courses
@@ -315,8 +315,8 @@ export function AdminDocuments() {
                           }
                           className={`w-full text-left px-3 py-2 rounded-lg text-sm mb-0.5 last:mb-0 flex justify-between items-center transition-colors ${
                             isSelected
-                              ? "bg-blue-600 text-white font-bold"
-                              : "hover:bg-gray-100 text-gray-600"
+                              ? "bg-primary text-white font-bold"
+                              : "hover:bg-muted/60 text-text/70"
                           }`}
                         >
                           <span className="truncate pr-2">{course}</span>
@@ -334,7 +334,7 @@ export function AdminDocuments() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm whitespace-nowrap">
             <thead>
-              <tr className="bg-gray-50/50 text-gray-500 text-xs uppercase tracking-wider">
+              <tr className="bg-muted/50 text-text/60 text-xs uppercase tracking-wider">
                 <th className="px-6 py-4 text-left font-bold">Student ID</th>
                 <th className="text-left font-bold">Student Name</th>
                 <th className="text-left font-bold">Course</th>
@@ -348,10 +348,10 @@ export function AdminDocuments() {
 
             <tbody className="divide-y divide-border">
               {filtered.map((row, i) => (
-                <tr key={row.id} className="hover:bg-gray-50/50 transition-colors animate-fade-in" style={{ animationDelay: `${i * 30}ms` }}>
-                  <td className="px-6 py-4 font-mono text-xs font-bold text-gray-400">{row.id}</td>
+                <tr key={row.id} className="hover:bg-muted/30 transition-colors animate-fade-in" style={{ animationDelay: `${i * 30}ms` }}>
+                  <td className="px-6 py-4 font-mono text-xs font-bold text-text/45">{row.id}</td>
                   <td className="font-bold text-text">{row.student}</td>
-                  <td className="text-xs text-gray-500 max-w-[150px] truncate">{row.course}</td>
+                  <td className="text-xs text-text/55 max-w-[150px] truncate">{row.course}</td>
 
                   {DOC_KEYS.map((k) => (
                     <td key={k}>
@@ -368,7 +368,7 @@ export function AdminDocuments() {
                   <td className="text-right px-6">
                     <button 
                       onClick={() => openModal(row)}
-                      className="p-2 hover:bg-white border border-transparent hover:border-border rounded-xl transition-all hover:shadow-sm text-primary"
+                      className="p-2 hover:bg-muted/50 border border-transparent hover:border-border rounded-xl transition-all hover:shadow-sm text-primary"
                     >
                       <Eye className="w-4 h-4" />
                     </button>
@@ -378,7 +378,7 @@ export function AdminDocuments() {
               {filtered.length === 0 && (
                 <tr>
                   <td colSpan={8} className="px-6 py-20 text-center">
-                    <div className="flex flex-col items-center justify-center text-gray-400">
+                    <div className="flex flex-col items-center justify-center text-text/45">
                       <File className="w-10 h-10 mb-2 opacity-20" />
                       <p className="text-sm font-medium">No students found matching your criteria.</p>
                     </div>
@@ -393,30 +393,30 @@ export function AdminDocuments() {
       {/* MODAL - DETAILED VIEW */}
       {showModal && selectedStudent && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in" onClick={() => setShowModal(false)}>
-          <div className="bg-white rounded-3xl w-full max-w-2xl shadow-2xl overflow-hidden animate-scale-in flex flex-col max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
-            <div className="p-6 border-b border-border flex justify-between items-center bg-gray-50/50">
+          <div className="bg-card rounded-3xl w-full max-w-2xl shadow-2xl overflow-hidden animate-scale-in flex flex-col max-h-[90vh] border border-border" onClick={(e) => e.stopPropagation()}>
+            <div className="p-6 border-b border-border flex justify-between items-center bg-muted/40">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-blue-600/30">
                   {selectedStudent.student.charAt(0)}
                 </div>
                 <div>
                   <h2 className="font-bold text-text text-lg">{selectedStudent.student}</h2>
-                  <p className="text-xs text-gray-400 font-mono">{selectedStudent.id} • {selectedStudent.course}</p>
+                  <p className="text-xs text-text/50 font-mono">{selectedStudent.id} • {selectedStudent.course}</p>
                 </div>
               </div>
-              <button onClick={() => setShowModal(false)} className="p-2 hover:bg-gray-200 rounded-xl transition-colors">
-                <XCircle className="w-6 h-6 text-gray-400" />
+              <button onClick={() => setShowModal(false)} className="p-2 hover:bg-muted/50 rounded-xl transition-colors">
+                <XCircle className="w-6 h-6 text-text/45" />
               </button>
             </div>
 
             <div className="p-6 overflow-y-auto space-y-4">
-              <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Document Status & Actions</h3>
+              <h3 className="text-[10px] font-bold text-text/50 uppercase tracking-widest">Document Status & Actions</h3>
               <div className="grid gap-3">
                 {DOC_KEYS.map((k) => (
-                  <div key={k} className="p-4 border border-border rounded-2xl bg-gray-50/30 flex items-center justify-between group hover:bg-gray-50 transition-all">
+                  <div key={k} className="p-4 border border-border rounded-2xl bg-muted/25 flex items-center justify-between group hover:bg-muted/40 transition-all">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 bg-white rounded-lg border border-border shadow-sm">
-                        <File className="w-4 h-4 text-gray-400" />
+                      <div className="p-2 bg-card rounded-lg border border-border shadow-sm">
+                        <File className="w-4 h-4 text-text/45" />
                       </div>
                       <div>
                         <p className="text-sm font-bold text-text">{DOC_LABELS[k]}</p>
@@ -433,7 +433,7 @@ export function AdminDocuments() {
                     <div className="flex gap-2">
                       <button 
                         onClick={() => setPreviewDoc({ name: DOC_LABELS[k], key: k, status: selectedStudent[k] })}
-                        className="p-2 bg-white border border-border rounded-xl shadow-sm hover:text-primary hover:border-primary transition-all"
+                        className="p-2 bg-card border border-border rounded-xl shadow-sm hover:text-primary hover:border-primary transition-all"
                         title="Preview"
                       >
                         <ExternalLink className="w-4 h-4" />
@@ -443,7 +443,7 @@ export function AdminDocuments() {
                         className={`px-4 py-2 text-[10px] font-bold rounded-xl border transition-all ${
                           selectedStudent[k] === 'Verified' 
                           ? 'bg-green-500 border-green-500 text-white shadow-md shadow-green-500/20' 
-                          : 'bg-white border-border text-gray-500 hover:border-green-500 hover:text-green-600'
+                          : 'bg-card border-border text-text/60 hover:border-green-500/50 hover:text-success'
                         }`}
                       >
                         Verify
@@ -453,7 +453,7 @@ export function AdminDocuments() {
                         className={`px-4 py-2 text-[10px] font-bold rounded-xl border transition-all ${
                           selectedStudent[k] === 'Rejected' 
                           ? 'bg-red-500 border-red-500 text-white shadow-md shadow-red-500/20' 
-                          : 'bg-white border-border text-gray-500 hover:border-red-500 hover:text-red-600'
+                          : 'bg-card border-border text-text/60 hover:border-red-500/50 hover:text-danger'
                         }`}
                       >
                         Reject
@@ -464,7 +464,7 @@ export function AdminDocuments() {
               </div>
             </div>
 
-            <div className="p-4 border-t border-border bg-gray-50/50">
+            <div className="p-4 border-t border-border bg-muted/40">
               <button
                 onClick={handleStudentDownload}
                 className="w-full bg-gray-900 text-white py-3 flex justify-center items-center gap-2 rounded-2xl font-bold text-sm hover:bg-black transition-all shadow-xl shadow-black/10"
@@ -480,25 +480,25 @@ export function AdminDocuments() {
       {/* DOCUMENT PREVIEW MODAL (TOP LAYER) */}
       {previewDoc && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-[60] p-4 animate-fade-in" onClick={() => setPreviewDoc(null)}>
-          <div className="bg-white rounded-[32px] w-full max-w-4xl max-h-[85vh] shadow-2xl overflow-hidden animate-scale-in flex flex-col" onClick={(e) => e.stopPropagation()}>
-            <div className="p-6 border-b border-border flex justify-between items-center">
+          <div className="bg-card rounded-[32px] w-full max-w-4xl max-h-[85vh] shadow-2xl overflow-hidden animate-scale-in flex flex-col border border-border" onClick={(e) => e.stopPropagation()}>
+            <div className="p-6 border-b border-border flex justify-between items-center bg-muted/30">
               <div className="flex items-center gap-4">
-                <div className="p-3 bg-blue-50 rounded-2xl border border-blue-100">
-                  <File className="w-6 h-6 text-blue-600" />
+                <div className="p-3 bg-primary/10 rounded-2xl border border-primary/20">
+                  <File className="w-6 h-6 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-bold text-text text-lg">{previewDoc.name}</h3>
-                  <p className="text-xs text-gray-400 mt-0.5">Student: {selectedStudent.student}</p>
+                  <p className="text-xs text-text/50 mt-0.5">Student: {selectedStudent.student}</p>
                 </div>
               </div>
-              <button onClick={() => setPreviewDoc(null)} className="p-2 hover:bg-gray-100 rounded-2xl transition-all">
-                <XCircle className="w-8 h-8 text-gray-300 hover:text-gray-400" />
+              <button onClick={() => setPreviewDoc(null)} className="p-2 hover:bg-muted/50 rounded-2xl transition-all">
+                <XCircle className="w-8 h-8 text-text/40 hover:text-text/60" />
               </button>
             </div>
 
-            <div className="flex-1 bg-gray-100/50 p-8 flex items-center justify-center">
-              <div className="bg-white w-full max-w-md aspect-[3/4] rounded-2xl shadow-xl border border-border flex items-center justify-center relative">
-                <div className="text-center opacity-20">
+            <div className="flex-1 bg-background p-8 flex items-center justify-center">
+              <div className="bg-card w-full max-w-md aspect-[3/4] rounded-2xl shadow-xl border border-border flex items-center justify-center relative">
+                <div className="text-center opacity-30 text-text">
                   <File className="w-20 h-20 mx-auto mb-4" />
                   <p className="font-bold text-xl uppercase tracking-widest italic">Preview Mock</p>
                 </div>
@@ -520,7 +520,7 @@ export function AdminDocuments() {
                   Reject
                 </button>
               </div>
-              <button className="flex items-center gap-2 px-6 py-3 border border-border rounded-2xl font-bold text-sm text-gray-600 hover:bg-gray-50 transition-all">
+              <button className="flex items-center gap-2 px-6 py-3 border border-border rounded-2xl font-bold text-sm text-text/70 hover:bg-muted/50 transition-all">
                 <Download className="w-4 h-4" /> Download
               </button>
             </div>

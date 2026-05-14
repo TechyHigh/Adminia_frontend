@@ -4,7 +4,7 @@ import { useToast } from '../../components/ui/Toast';
 import { Modal } from '../../components/ui/Modal';
 import { TableSkeleton } from '../../components/ui/Skeleton';
 
-const inputCls = 'w-full px-4 py-2.5 border border-border rounded-xl outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 text-sm transition-all';
+const inputCls = 'w-full px-4 py-2.5 border border-border rounded-xl outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 text-sm transition-all bg-card text-text placeholder:text-text/45';
 
 const DetailSection = ({ icon, title, children }) => (
   <div className="space-y-3">
@@ -24,8 +24,8 @@ const Grid = ({ children }) => (
 
 const Info = ({ label, value }) => (
   <div>
-    <p className="text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-0.5">{label}</p>
-    <p className="text-sm text-text font-medium">{value || <span className="text-gray-300">—</span>}</p>
+    <p className="text-[10px] uppercase tracking-wider text-text/50 font-bold mb-0.5">{label}</p>
+    <p className="text-sm text-text font-medium">{value || <span className="text-text/35">—</span>}</p>
   </div>
 );
 
@@ -171,10 +171,10 @@ export function StudentTable() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-text">Students Directory</h1>
-          <p className="text-gray-500 mt-1 text-sm">Manage all enrolled students.</p>
+          <p className="text-text/60 mt-1 text-sm">Manage all enrolled students.</p>
         </div>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2.5 bg-card border border-border text-text rounded-xl font-medium text-sm hover:bg-gray-50 transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2.5 bg-card border border-border text-text rounded-xl font-medium text-sm hover:bg-muted/50 transition-colors">
             <Download className="w-4 h-4" /> Export CSV
           </button>
           <button onClick={() => setShowModal(true)}
@@ -188,10 +188,10 @@ export function StudentTable() {
         {/* Toolbar */}
         <div className="p-4 border-b border-border flex flex-col sm:flex-row justify-between gap-3 relative">
           <div className="relative max-w-xs w-full">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-text/45" />
             <input type="text" value={search} onChange={e => setSearch(e.target.value)}
               placeholder="Search students..."
-              className="pl-9 pr-4 py-2 border border-border rounded-xl outline-none focus:border-primary text-sm w-full transition-colors" />
+              className="pl-9 pr-4 py-2 border border-border rounded-xl outline-none focus:border-primary text-sm w-full transition-colors bg-card text-text placeholder:text-text/45" />
           </div>
           <div className="flex gap-2">
             {selectedCourses.length > 0 && (
@@ -201,23 +201,23 @@ export function StudentTable() {
               </button>
             )}
             <button onClick={() => setShowFilter(!showFilter)}
-              className={`flex items-center justify-center gap-2 px-4 py-2 border border-border rounded-xl text-sm font-medium transition-colors ${showFilter || selectedCourses.length > 0 ? 'bg-primary/5 border-primary/20 text-primary' : 'hover:bg-gray-50'}`}>
+              className={`flex items-center justify-center gap-2 px-4 py-2 border border-border rounded-xl text-sm font-medium transition-colors ${showFilter || selectedCourses.length > 0 ? 'bg-primary/5 border-primary/20 text-primary' : 'hover:bg-muted/50'}`}>
               <Filter className="w-4 h-4" /> Filter
             </button>
           </div>
 
           {/* Filter Dropdown */}
           {showFilter && (
-            <div className="absolute right-0 top-[calc(100%-4px)] w-72 bg-white border border-border rounded-2xl shadow-2xl z-20 animate-scale-in origin-top-right overflow-hidden">
-              <div className="p-3 border-b border-border bg-gray-50/50 flex items-center justify-between">
-                <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Filter by Course</span>
-                <button onClick={() => setShowFilter(false)} className="p-1 hover:bg-gray-200 rounded-lg transition-colors">
-                  <X className="w-4 h-4 text-gray-400" />
+            <div className="absolute right-0 top-[calc(100%-4px)] w-72 bg-card border border-border rounded-2xl shadow-2xl z-20 animate-scale-in origin-top-right overflow-hidden">
+              <div className="p-3 border-b border-border bg-muted/40 flex items-center justify-between">
+                <span className="text-xs font-bold text-text/55 uppercase tracking-wider">Filter by Course</span>
+                <button onClick={() => setShowFilter(false)} className="p-1 hover:bg-border/40 rounded-lg transition-colors">
+                  <X className="w-4 h-4 text-text/45" />
                 </button>
               </div>
               <div className="max-h-64 overflow-y-auto p-2 custom-scrollbar">
                 <button onClick={() => setSelectedCourses([])}
-                  className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors mb-1 ${selectedCourses.length === 0 ? 'bg-primary text-white font-bold' : 'hover:bg-gray-100 text-gray-600'}`}>
+                  className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors mb-1 ${selectedCourses.length === 0 ? 'bg-primary text-white font-bold' : 'hover:bg-muted/60 text-text/70'}`}>
                   All Courses
                 </button>
                 {COURSES.map(course => {
@@ -229,7 +229,7 @@ export function StudentTable() {
                           isSelected ? prev.filter(c => c !== course) : [...prev, course]
                         );
                       }}
-                      className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors mb-0.5 last:mb-0 flex items-center justify-between ${isSelected ? 'bg-primary text-white font-bold' : 'hover:bg-gray-100 text-gray-600'}`}>
+                      className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors mb-0.5 last:mb-0 flex items-center justify-between ${isSelected ? 'bg-primary text-white font-bold' : 'hover:bg-muted/60 text-text/70'}`}>
                       <span>{course}</span>
                       {isSelected && <X className="w-3 h-3" />}
                     </button>
@@ -243,7 +243,7 @@ export function StudentTable() {
         {/* ✅ FIXED: Single wrapper with both overflow-x and overflow-y + bounded height */}
         <div className="overflow-auto max-h-[60vh]">
           <table className="min-w-max text-left text-sm whitespace-nowrap">
-            <thead className="bg-gray-50 text-gray-500 font-medium border-b border-border sticky top-0 z-10">
+            <thead className="bg-muted/50 text-text/60 font-medium border-b border-border sticky top-0 z-10">
               <tr>
                 <th className="px-6 py-4">Student ID</th>
                 <th className="px-6 py-4">Student Name</th>
@@ -281,7 +281,7 @@ export function StudentTable() {
             </thead>
             <tbody className="divide-y divide-border">
               {filtered.map((s, i) => (
-                <tr key={s.id} className="hover:bg-gray-50/70 transition-colors animate-fade-in"
+                <tr key={s.id} className="hover:bg-muted/30 transition-colors animate-fade-in"
                   style={{ animationDelay: `${i * 40}ms` }}>
                   <td className="px-6 py-4 font-mono text-xs font-semibold text-text">{s.id}</td>
                   <td className="px-6 py-4">
@@ -291,44 +291,44 @@ export function StudentTable() {
                       </div>
                       <div>
                         <span className="font-medium text-text block">{s.name}</span>
-                        <span className="text-[10px] text-gray-400">{s.email}</span>
+                        <span className="text-[10px] text-text/45">{s.email}</span>
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-gray-500">{s.fatherName || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.motherName || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.dob || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.sex || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.category || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.bloodGroup || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.religion || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.guardian?.name || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.guardian?.relation || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.guardian?.contact || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.mobile || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.contact?.altMobile || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.email || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.contact?.address || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.district || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.contact?.state || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.contact?.pin || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.contact?.domicile || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.course || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.session || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.college || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.admissionType || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.rank || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.aadhaar || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.abcId || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.education?.examType || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.education?.board || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.education?.year || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.education?.marks || '—'}</td>
-                  <td className="px-6 py-4 text-gray-500">{s.education?.cgpa || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.fatherName || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.motherName || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.dob || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.sex || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.category || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.bloodGroup || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.religion || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.guardian?.name || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.guardian?.relation || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.guardian?.contact || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.mobile || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.contact?.altMobile || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.email || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.contact?.address || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.district || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.contact?.state || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.contact?.pin || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.contact?.domicile || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.course || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.session || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.college || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.admissionType || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.rank || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.aadhaar || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.abcId || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.education?.examType || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.education?.board || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.education?.year || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.education?.marks || '—'}</td>
+                  <td className="px-6 py-4 text-text/55">{s.education?.cgpa || '—'}</td>
                 </tr>
               ))}
               {filtered.length === 0 && (
-                <tr><td colSpan={32} className="px-6 py-12 text-center text-gray-400 text-sm">No students found.</td></tr>
+                <tr><td colSpan={32} className="px-6 py-12 text-center text-text/45 text-sm">No students found.</td></tr>
               )}
             </tbody>
           </table>
@@ -339,13 +339,13 @@ export function StudentTable() {
       <Modal open={!!selectedStudent} onClose={() => setSelectedStudent(null)} title="Student Details">
         {selectedStudent && (
           <div className="space-y-6 max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar">
-            <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl">
+            <div className="flex items-center gap-4 p-4 bg-muted/50 rounded-xl border border-border/50">
               <div className="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center text-xl font-bold">
                 {selectedStudent.name?.charAt(0)}
               </div>
               <div>
                 <h3 className="font-bold text-text">{selectedStudent.name}</h3>
-                <p className="text-xs text-gray-500 font-mono">{selectedStudent.id}</p>
+                <p className="text-xs text-text/55 font-mono">{selectedStudent.id}</p>
               </div>
             </div>
 
@@ -401,11 +401,11 @@ export function StudentTable() {
       {/* Add Student Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white w-full max-w-md rounded-2xl shadow-xl animate-scale-in">
+          <div className="bg-card border border-border w-full max-w-md rounded-2xl shadow-xl animate-scale-in">
             <div className="flex items-center justify-between p-5 border-b border-border">
               <h2 className="text-lg font-bold text-text">Add Student</h2>
               <button onClick={() => setShowModal(false)}
-                className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
+                className="p-1.5 text-text/45 hover:text-text hover:bg-muted/50 rounded-lg transition-colors">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -427,7 +427,7 @@ export function StudentTable() {
             </div>
             <div className="flex justify-end gap-3 p-5 border-t border-border">
               <button onClick={() => setShowModal(false)}
-                className="px-4 py-2.5 border border-border rounded-xl text-sm font-medium hover:bg-gray-50 transition-colors">
+                className="px-4 py-2.5 border border-border rounded-xl text-sm font-medium hover:bg-muted/50 transition-colors">
                 Cancel
               </button>
               <button onClick={handleAdd}

@@ -14,21 +14,21 @@ export function LandingPage() {
                                 Student Admission <br />
                                 <span className="text-primary">Made Simple</span>
                             </h1>
-                            <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
+                            <p className="text-lg md:text-xl text-text/75 mb-8 leading-relaxed">
                                 A modern platform to manage your entire admission journey from application to approval.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <Link to="/login" className="inline-flex items-center justify-center px-6 py-3.5 border border-transparent text-base font-medium border-2 rounded-xl text-white bg-primary hover:bg-primary/90 transition-all shadow-sm">
                                     Login Now <ArrowRight className="ml-2 w-5 h-5" />
                                 </Link>
-                                <Link to="/super-admin" className="inline-flex items-center justify-center px-6 py-3.5 border border-gray-300 rounded-xl text-base font-medium text-text bg-white hover:bg-gray-50 transition-all shadow-sm">
+                                <Link to="/super-admin" className="inline-flex items-center justify-center px-6 py-3.5 border-2 border-border rounded-xl text-base font-medium text-text bg-card hover:bg-border/40 transition-all shadow-sm">
                                     Super_Admin Portal <ArrowRight className="ml-2 w-5 h-5" />
                                 </Link>
                             </div>
                         </div>
                         <div className="relative">
                             <div className="relative rounded-2xl bg-card border border-border overflow-hidden shadow-2xl">
-                                <div className="h-8 bg-gray-50 border-b border-border flex items-center px-4 gap-2">
+                                <div className="h-8 bg-card border-b border-border flex items-center px-4 gap-2">
                                     <div className="w-3 h-3 rounded-full bg-red-400" />
                                     <div className="w-3 h-3 rounded-full bg-yellow-400" />
                                     <div className="w-3 h-3 rounded-full bg-green-400" />
@@ -37,17 +37,17 @@ export function LandingPage() {
                                     <div className="flex gap-4">
                                         <div className="w-1/4 h-24 bg-card rounded-lg border border-border p-4">
                                             <div className="w-8 h-8 rounded-full bg-primary/20 mb-3" />
-                                            <div className="w-16 h-2 bg-gray-200 rounded" />
+                                            <div className="w-16 h-2 bg-gray-200 dark:bg-gray-700 rounded" />
                                         </div>
                                         <div className="w-1/4 h-24 bg-card rounded-lg border border-border p-4">
                                             <div className="w-8 h-8 rounded-full bg-success/20 mb-3" />
-                                            <div className="w-16 h-2 bg-gray-200 rounded" />
+                                            <div className="w-16 h-2 bg-gray-200 dark:bg-gray-700 rounded" />
                                         </div>
                                         <div className="flex-1 h-24 bg-card rounded-lg border border-border p-4" />
                                     </div>
                                     <div className="h-48 bg-card rounded-lg border border-border p-4">
-                                        <div className="w-full h-full border border-dashed border-gray-200 rounded flex items-center justify-center">
-                                            <span className="text-gray-400 font-medium">Dashboard Preview</span>
+                                        <div className="w-full h-full border border-dashed border-border rounded flex items-center justify-center">
+                                            <span className="text-text/50 font-medium">Dashboard Preview</span>
                                         </div>
                                     </div>
                                 </div>
@@ -58,11 +58,11 @@ export function LandingPage() {
             </section>
 
             {/* Features Section */}
-            <section id="features" className="py-20 bg-white">
+            <section id="features" className="py-20 bg-background">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl lg:text-[32px] font-bold text-text mb-4">Powerful & Easy to Use</h2>
-                        <p className="text-gray-600 max-w-2xl mx-auto">Everything you need to complete your admission process efficiently.</p>
+                        <p className="text-text/75 max-w-2xl mx-auto">Everything you need to complete your admission process efficiently.</p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {/* Card 1 */}
@@ -71,7 +71,7 @@ export function LandingPage() {
                                 <FileText className="w-6 h-6" />
                             </div>
                             <h3 className="text-[20px] font-semibold text-text mb-3">Online Application</h3>
-                            <p className="text-gray-600 leading-relaxed">Submit admission applications digitally with ease and minimal friction.</p>
+                            <p className="text-text/75 leading-relaxed">Submit admission applications digitally with ease and minimal friction.</p>
                         </div>
                         {/* Card 2 */}
                         <div className="bg-card border border-border p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
@@ -79,7 +79,7 @@ export function LandingPage() {
                                 <UploadCloud className="w-6 h-6" />
                             </div>
                             <h3 className="text-[20px] font-semibold text-text mb-3">Upload Documents</h3>
-                            <p className="text-gray-600 leading-relaxed">Securely upload documents and certificates for instant verification.</p>
+                            <p className="text-text/75 leading-relaxed">Securely upload documents and certificates for instant verification.</p>
                         </div>
                         {/* Card 3 */}
                         <div className="bg-card border border-border p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
@@ -87,7 +87,7 @@ export function LandingPage() {
                                 <CheckCircle className="w-6 h-6" />
                             </div>
                             <h3 className="text-[20px] font-semibold text-text mb-3">Track Status</h3>
-                            <p className="text-gray-600 leading-relaxed">Track admission progress in real time directly from your dashboard.</p>
+                            <p className="text-text/75 leading-relaxed">Track admission progress in real time directly from your dashboard.</p>
                         </div>
                     </div>
                 </div>

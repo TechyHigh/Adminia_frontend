@@ -18,7 +18,7 @@ export function Modal({ open, onClose, title, children }) {
           <h2 className="text-lg font-bold text-text">{title}</h2>
           <button 
             onClick={onClose}
-            className="p-2 text-gray-400 hover:text-gray-600 rounded-xl hover:bg-gray-100 transition-colors"
+            className="p-2 text-text/45 hover:text-text rounded-xl hover:bg-muted/50 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>

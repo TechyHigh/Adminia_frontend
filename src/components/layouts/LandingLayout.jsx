@@ -1,5 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 import { LogIn, UserPlus } from 'lucide-react';
+import ThemeToggle from '../ThemeToggle';
 
 export default function LandingLayout() {
     return (
@@ -24,6 +25,7 @@ export default function LandingLayout() {
                         {/* <Link to="/register" className="flex items-center gap-2 bg-primary text-card px-4 py-2 rounded-lg font-medium hover:bg-primary/90 transition-colors">
                             <UserPlus className="w-5 h-5" /> Register
                         </Link> */}
+                        <ThemeToggle />
                     </div>
                 </div>
             </header>
@@ -32,7 +34,7 @@ export default function LandingLayout() {
                 <Outlet />
             </main>
 
-            <footer className="bg-text text-background py-16">
+            <footer className="bg-slate-900 text-slate-300 py-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div>
                         <h3 className="text-xl font-bold text-white mb-4">Adminia</h3>
