@@ -373,7 +373,7 @@ export function ApplicationReview() {
       {/* 🔥 DOCUMENT PREVIEW MODAL */}
       {previewDoc && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 sm:p-6 animate-fade-in" onClick={() => setPreviewDoc(null)}>
-          <div className="bg-card w-full max-w-5xl max-h-[90vh] rounded-3xl shadow-2xl flex flex-col animate-scale-in overflow-hidden border border-border" onClick={e => e.stopPropagation()}>
+          <div className="bg-card w-full max-w-5xl max-h-[90vh] rounded-3xl shadow-2xl flex flex-col animate-scale-in overflow-hidden border border-border mt-8 sm:mt-12" onClick={e => e.stopPropagation()}>
             <div className="p-5 border-b border-border flex justify-between items-center bg-muted/40">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center">
@@ -397,8 +397,8 @@ export function ApplicationReview() {
               </button>
             </div>
             
-            <div className="flex-1 overflow-auto bg-background p-6 sm:p-12 flex items-center justify-center min-h-[400px]">
-              <div className="bg-card p-4 rounded-3xl shadow-xl border border-border max-w-2xl w-full aspect-[3/4] flex items-center justify-center relative group">
+            <div className="flex-1 min-h-0 overflow-y-auto bg-background p-6 sm:p-12 flex flex-col items-center justify-start sm:justify-center">
+              <div className="bg-card p-4 rounded-3xl shadow-xl border border-border w-full max-w-[260px] sm:max-w-[340px] aspect-[3/4] flex items-center justify-center relative group my-auto shrink-0">
                 <div className="text-center space-y-4">
                   <div className="w-24 h-24 bg-muted rounded-3xl flex items-center justify-center mx-auto border border-dashed border-border">
                     <File className="w-12 h-12 text-text/25" />

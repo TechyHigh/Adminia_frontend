@@ -10,7 +10,8 @@ import {
   ToggleLeft, 
   ToggleRight, 
   Clock, 
-  AlertTriangle 
+  AlertTriangle,
+  Download
 } from 'lucide-react';
 import { useToast } from '../../components/ui/Toast';
 import { DashboardSkeleton } from '../../components/ui/Skeleton';
@@ -68,9 +69,21 @@ export function ApplicationsTable({ limit }) {
   const statuses = ['Under Review', 'Approved', 'Rejected', 'Need Correction'];
 
   return (
-    <div className="bg-card border border-border rounded-xl shadow-sm">
+    <div className={!limit ? "space-y-6 animate-fade-in" : ""}>
       {!limit && (
-        <div className="p-4 border-b border-border flex flex-col sm:flex-row justify-between gap-3 relative">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-bold text-text">Applications</h1>
+            <p className="text-text/60 mt-1 text-sm">Review and manage all student applications.</p>
+          </div>
+          <button className="flex items-center gap-2 px-4 py-2.5 bg-card border border-border text-text rounded-xl font-medium text-sm hover:bg-muted/50 transition-colors shadow-sm">
+            <Download className="w-4 h-4" /> Export CSV
+          </button>
+        </div>
+      )}
+      <div className="bg-card border border-border rounded-xl shadow-sm">
+        {!limit && (
+          <div className="p-4 border-b border-border flex flex-col sm:flex-row justify-between gap-3 relative">
           <div className="relative">
             <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-text/45" />
             <input 
@@ -183,6 +196,7 @@ export function ApplicationsTable({ limit }) {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   );
 }

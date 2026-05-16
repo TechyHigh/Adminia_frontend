@@ -393,7 +393,7 @@ export function AdminDocuments() {
       {/* MODAL - DETAILED VIEW */}
       {showModal && selectedStudent && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in" onClick={() => setShowModal(false)}>
-          <div className="bg-card rounded-3xl w-full max-w-2xl shadow-2xl overflow-hidden animate-scale-in flex flex-col max-h-[90vh] border border-border" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-card rounded-3xl w-full max-w-2xl shadow-2xl overflow-hidden animate-scale-in flex flex-col max-h-[90vh] border border-border mt-8 sm:mt-12" onClick={(e) => e.stopPropagation()}>
             <div className="p-6 border-b border-border flex justify-between items-center bg-muted/40">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-blue-600/30">
@@ -480,7 +480,7 @@ export function AdminDocuments() {
       {/* DOCUMENT PREVIEW MODAL (TOP LAYER) */}
       {previewDoc && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-[60] p-4 animate-fade-in" onClick={() => setPreviewDoc(null)}>
-          <div className="bg-card rounded-[32px] w-full max-w-4xl max-h-[85vh] shadow-2xl overflow-hidden animate-scale-in flex flex-col border border-border" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-card rounded-[32px] w-full max-w-4xl max-h-[85vh] shadow-2xl overflow-hidden animate-scale-in flex flex-col border border-border mt-8 sm:mt-12" onClick={(e) => e.stopPropagation()}>
             <div className="p-6 border-b border-border flex justify-between items-center bg-muted/30">
               <div className="flex items-center gap-4">
                 <div className="p-3 bg-primary/10 rounded-2xl border border-primary/20">
@@ -496,8 +496,8 @@ export function AdminDocuments() {
               </button>
             </div>
 
-            <div className="flex-1 bg-background p-8 flex items-center justify-center">
-              <div className="bg-card w-full max-w-md aspect-[3/4] rounded-2xl shadow-xl border border-border flex items-center justify-center relative">
+            <div className="flex-1 min-h-0 overflow-y-auto bg-background p-4 flex flex-col items-center justify-start sm:justify-center">
+              <div className="bg-card w-full max-w-[260px] sm:max-w-[340px] aspect-[3/4] rounded-2xl shadow-xl border border-border flex items-center justify-center relative my-auto shrink-0">
                 <div className="text-center opacity-30 text-text">
                   <File className="w-20 h-20 mx-auto mb-4" />
                   <p className="font-bold text-xl uppercase tracking-widest italic">Preview Mock</p>
